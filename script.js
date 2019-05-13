@@ -5,7 +5,7 @@ window.onload = function()
     var canvasHeight = 600;
     var blockSize = 30;
     var context;
-    var delay = 1000; 
+    var delay = 100; 
     var snakee;
 
     init();
@@ -26,6 +26,7 @@ window.onload = function()
     function refreshCanvas()
     {
         context.clearRect(0, 0, canvasWidth, canvasHeight);
+        snakee.advance();
         snakee.draw();
         setTimeout(refreshCanvas, delay);
     }
@@ -48,8 +49,14 @@ window.onload = function()
             {
                 drawBlock(context, this.body[i]);
             }
-            context.restore();
-            
+            context.restore();         
+        }; 
+        this.advance = function()
+        {
+            var nextPosition = this.body[0].slice();
+            nextPosition[0]++;
+            this.body.unshift(nextPosition);
+            this.body.pop();
         };
     }
 }
