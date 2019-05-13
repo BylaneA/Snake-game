@@ -27,6 +27,7 @@ window.onload = function()
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.fillStyle = "red";
         context.fillRect(xCoord, yCoord, 100, 50);
+        setTimeout(refreshCanvas, delay);
     }
 
 }
